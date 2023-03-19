@@ -1,4 +1,4 @@
-import com.mx.rockstar.mytemplate.Configuration
+import com.mx.rockstar.portfolio.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    compileSdk = Configuration.compileSdk
+    compileSdk = com.mx.rockstar.portfolio.Configuration.compileSdk
 
     defaultConfig {
-        minSdk = Configuration.minSdk
-        targetSdk = Configuration.targetSdk
+        minSdk = com.mx.rockstar.portfolio.Configuration.minSdk
+        targetSdk = com.mx.rockstar.portfolio.Configuration.targetSdk
         // The schemas directory contains a schema file for each version of the Room database.
         // This is required to enable Room auto migrations.
         // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.

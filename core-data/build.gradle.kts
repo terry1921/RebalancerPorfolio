@@ -1,4 +1,4 @@
-import com.mx.rockstar.mytemplate.Configuration
+import com.mx.rockstar.portfolio.Configuration
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    compileSdk = Configuration.compileSdk
+    compileSdk = com.mx.rockstar.portfolio.Configuration.compileSdk
 
     defaultConfig {
-        minSdk = Configuration.minSdk
-        targetSdk = Configuration.targetSdk
+        minSdk = com.mx.rockstar.portfolio.Configuration.minSdk
+        targetSdk = com.mx.rockstar.portfolio.Configuration.targetSdk
     }
 }
 

@@ -1,8 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":core-database")
-
-
 pluginManagement {
     repositories {
         google()
@@ -20,9 +17,10 @@ dependencyResolutionManagement {
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
 }
-rootProject.name = "My Template"
+rootProject.name = "Rebalancer Portfolio"
 include(":app")
 include(":core-network")
+include(":core-database")
 include(":core-model")
 include(":core-data")
 include(":core-test")

@@ -1,4 +1,4 @@
-import com.mx.rockstar.mytemplate.Configuration
+import com.mx.rockstar.portfolio.Configuration
 
 apply(plugin = "org.jetbrains.kotlin.android")
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -11,10 +11,10 @@ plugins {
 }
 
 android {
-    namespace = "com.mx.rockstar.mytemplate"
+    namespace = "com.mx.rockstar.portfolio"
     compileSdk = Configuration.compileSdk
     defaultConfig {
-        applicationId = "com.mx.rockstar.mytemplate"
+        applicationId = "com.mx.rockstar.portfolio"
         minSdk = Configuration.minSdk
         targetSdk = Configuration.targetSdk
         versionCode = Configuration.versionCode
