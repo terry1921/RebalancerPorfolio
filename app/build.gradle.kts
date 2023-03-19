@@ -1,4 +1,4 @@
-import com.mx.rockstar.portfolio.Configuration
+import dev.rockstar.portfolio.Configuration
 
 apply(plugin = "org.jetbrains.kotlin.android")
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -11,15 +11,15 @@ plugins {
 }
 
 android {
-    namespace = "com.mx.rockstar.portfolio"
+    namespace = "dev.rockstar.portfolio"
     compileSdk = Configuration.compileSdk
     defaultConfig {
-        applicationId = "com.mx.rockstar.portfolio"
+        applicationId = "dev.rockstar.portfolio"
         minSdk = Configuration.minSdk
         targetSdk = Configuration.targetSdk
         versionCode = Configuration.versionCode
         versionName = Configuration.versionName
-        testInstrumentationRunner = "com.mx.rockstar.mytemplate.AppTestRunner"
+        testInstrumentationRunner = "dev.rockstar.portfolio.AppTestRunner"
     }
 
     compileOptions {

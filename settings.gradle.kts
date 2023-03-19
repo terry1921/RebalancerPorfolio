@@ -17,6 +17,7 @@ dependencyResolutionManagement {
         maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
     }
 }
+
 rootProject.name = "Rebalancer Portfolio"
 include(":app")
 include(":core-network")
