@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Rebalancer Portfolio</string>
+
+    <!-- Disclaimer Activity-->
+    <string name="welcome_text">Bienvenido</string>
+    <string name="disclaimer_text">Descargo de responsabilidad</string>
+    <string name="disclaimer_body">No soy responsable de las propuestas sugeridas por esta aplicación. Úselo solo como referencia fácil, siempre haga sus propios cálculos.</string>
+    <string name="link_privacy_policy">política de privacidad</string>
+    <string name="start_button_text">Comenzar</string>
+
 </resources>

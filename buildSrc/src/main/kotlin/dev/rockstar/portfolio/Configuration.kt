@@ -10,4 +10,6 @@ object Configuration {
     const val versionName = "$majorVersion.$minorVersion.$patchVersion"
     const val versionCode = 1
     const val suffix = ".debug"
+    const val database = "rebalancer.db"
+    const val preferences = "rebalancer"
 }

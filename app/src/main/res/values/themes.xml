@@ -1,16 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <!-- Base application theme. -->
-    <style name="Theme.MyTemplate" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.RebalancedPortfolio" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimary">@color/fun_blue</item>
+        <item name="colorPrimaryVariant">@color/congress_blue</item>
+        <item name="colorOnPrimary">@color/white_ice</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorSecondary">@color/lynch</item>
+        <item name="colorSecondaryVariant">@color/pacific_blue</item>
+        <item name="colorOnSecondary">@color/ebony_clay</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Launcher" parent="Theme.MaterialComponents.NoActionBar">
+        <item name="android:windowBackground">@drawable/background_launcher</item>
+        <item name="colorPrimaryDark">@color/white_ice</item>
+    </style>
+
 </resources>
