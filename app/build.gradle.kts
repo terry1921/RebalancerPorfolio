@@ -94,7 +94,7 @@ android {
         }
         create("production") {
             dimension = "version"
-            versionNameSuffix = ".debug"
+            versionNameSuffix = Configuration.suffix
         }
     }
 }
