@@ -1,4 +1,10 @@
 import dev.rockstar.portfolio.Configuration
+import java.util.Properties
+import java.io.FileInputStream
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties()
+keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 
 apply(plugin = "org.jetbrains.kotlin.android")
 @Suppress("DSL_SCOPE_VIOLATION")
@@ -11,6 +17,16 @@ plugins {
 }
 
 android {
+
+    signingConfigs {
+        create("config") {
+            keyAlias = keystoreProperties["keyAlias"] as String
+            keyPassword = keystoreProperties["keyPassword"] as String
+            storeFile = file(keystoreProperties["storeFile"] as String)
+            storePassword = keystoreProperties["storePassword"] as String
+        }
+    }
+
     namespace = "dev.rockstar.portfolio"
     compileSdk = Configuration.compileSdk
     defaultConfig {
@@ -53,6 +69,32 @@ android {
             isDebuggable = true
             signingConfig = getByName("debug").signingConfig
             matchingFallbacks += listOf("release")
+        }
+        getByName("release") {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+            signingConfig = signingConfigs.getByName("config")
+        }
+        getByName("debug") {
+            isDebuggable = true
+            isMinifyEnabled = false
+            isShrinkResources = false
+            isJniDebuggable = false
+            isZipAlignEnabled = true
+        }
+    }
+    flavorDimensions.add("version")
+    productFlavors {
+        create("development") {
+            dimension = "version"
+        }
+        create("production") {
+            dimension = "version"
+            versionNameSuffix = ".debug"
         }
     }
 }

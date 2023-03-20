@@ -97,3 +97,7 @@ lint/tmp/
 .idea/sonarlint
 .idea/sonarlint/issuestore
 .idea/sonarlint/issuestore/index.pb
+
+# singing
+.signing
+keystore.properties
