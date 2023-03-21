@@ -2,11 +2,11 @@ package dev.rockstar.portfolio.ui.main
 
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import dev.rockstar.portfolio.core.data.repository.MainRepository
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.rockstar.portfolio.core.data.repository.MainRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber

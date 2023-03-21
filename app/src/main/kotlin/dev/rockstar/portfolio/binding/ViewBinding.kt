@@ -3,6 +3,7 @@ package dev.rockstar.portfolio.binding
 import android.view.View
 import android.widget.Toast
 import androidx.databinding.BindingAdapter
+import com.google.android.material.snackbar.Snackbar
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 object ViewBinding {
@@ -14,6 +15,15 @@ object ViewBinding {
             Toast.makeText(view.context, message, Toast.LENGTH_SHORT).show()
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("snack")
+    fun bindSnack(view: View, text: Int) {
+        if (text != -1) {
+            Snackbar.make(view, text, Snackbar.LENGTH_INDEFINITE).show()
+        }
+    }
+
 
     @JvmStatic
     @BindingAdapter("gone")

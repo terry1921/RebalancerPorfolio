@@ -3,11 +3,11 @@ package dev.rockstar.portfolio.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
-import dev.rockstar.portfolio.R
-import dev.rockstar.portfolio.databinding.LayoutMainBinding
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
+import dev.rockstar.portfolio.R
+import dev.rockstar.portfolio.databinding.LayoutMainBinding
 
 @AndroidEntryPoint
 class MainActivity : BindingActivity<LayoutMainBinding>(R.layout.layout_main) {

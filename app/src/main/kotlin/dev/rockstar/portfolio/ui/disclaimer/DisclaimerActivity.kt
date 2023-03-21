@@ -9,6 +9,7 @@ import com.skydoves.transformationlayout.onTransformationStartContainer
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutDisclaimerBinding
 import dev.rockstar.portfolio.ui.main.MainActivity
+import dev.rockstar.portfolio.ui.privacy.PrivacyPolicyActivity
 
 class DisclaimerActivity : BindingActivity<LayoutDisclaimerBinding>(R.layout.layout_disclaimer) {
 
@@ -29,8 +30,8 @@ class DisclaimerActivity : BindingActivity<LayoutDisclaimerBinding>(R.layout.lay
             goToMain()
         }
         binding.linkPrivacyPolice.setOnClickListener {
-            //val intent = Intent(this@DisclaimerActivity, PrivacyPolicyActivity::class.java)
-            //startActivity(intent)
+            val intent = Intent(this@DisclaimerActivity, PrivacyPolicyActivity::class.java)
+            startActivity(intent)
         }
         binding.startButton.setOnClickListener {
             viewModel.showedDisclaimer()

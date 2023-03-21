@@ -5,7 +5,10 @@
     <string name="welcome_text">Bienvenido</string>
     <string name="disclaimer_text">Descargo de responsabilidad</string>
     <string name="disclaimer_body">No soy responsable de las propuestas sugeridas por esta aplicación. Úselo solo como referencia fácil, siempre haga sus propios cálculos.</string>
-    <string name="link_privacy_policy">política de privacidad</string>
     <string name="start_button_text">Comenzar</string>
+
+    <string name="link_privacy_policy">política de privacidad</string>
+    <string name="please_check_connection">Por favor revise su conexion a internet</string>
+    <string name="privacy_policy_url">https://pages.flycricket.io/rebalanced-portfolio/privacy.html</string>
 
 </resources>
