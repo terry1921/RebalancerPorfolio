@@ -22,6 +22,7 @@ rootProject.name = "Rebalancer Portfolio"
 include(":app")
 include(":core-network")
 include(":core-database")
+include(":core-preferences")
 include(":core-model")
 include(":core-data")
 include(":core-test")

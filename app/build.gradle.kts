@@ -78,27 +78,16 @@ android {
                 "proguard-rules.pro"
             )
             signingConfig = signingConfigs.getByName("config")
-            buildConfigField ("String", "DATABASE_NAME", '"' + dev.rockstar.portfolio.Configuration.database + '"')
-            buildConfigField ("String", "CONF", '"' + dev.rockstar.portfolio.Configuration.preferences + '"')
-        }
-        getByName("debug") {
-            isDebuggable = true
-            isMinifyEnabled = false
-            isShrinkResources = false
-            isJniDebuggable = false
-            isZipAlignEnabled = true
-            buildConfigField ("String", "DATABASE_NAME", '"' + Configuration.database + '"')
-            buildConfigField ("String", "CONF", '"' + Configuration.preferences + '"')
         }
     }
     flavorDimensions.add("version")
     productFlavors {
         create("development") {
             dimension = "version"
+            versionNameSuffix = Configuration.suffix
         }
         create("production") {
             dimension = "version"
-            versionNameSuffix = Configuration.suffix
         }
     }
 }
@@ -106,6 +95,7 @@ android {
 dependencies {
     // modules
     implementation(project(":core-data"))
+    implementation(project(":core-preferences"))
 
     // modules for unit test
     testImplementation(project(":core-network"))
@@ -122,7 +112,6 @@ dependencies {
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.startup)
     implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.datastore)
 
     // gson
     implementation(libs.gson)

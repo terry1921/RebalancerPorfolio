@@ -1,25 +1,26 @@
 package dev.rockstar.portfolio.ui.disclaimer
 
 import com.skydoves.bindables.BindingViewModel
-import dev.rockstar.portfolio.utils.Preferences
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.rockstar.portfolio.core.preferences.Preferences
 import timber.log.Timber
 import javax.inject.Inject
 
-const val DISCLAIMER = "disclaimer"
-
-class DisclaimerViewModel @Inject constructor() : BindingViewModel() {
+@HiltViewModel
+class DisclaimerViewModel @Inject constructor(
+    private val preferences: Preferences
+) : BindingViewModel() {
 
     init {
         Timber.d("init DisclaimerViewModel")
     }
 
     fun isShowedDisclaimer(): Boolean {
-        val show = Preferences().getPreference(DISCLAIMER, Boolean::class.java) ?: false
-        return show as Boolean
+        return preferences.showDisclaimer
     }
 
     fun showedDisclaimer() {
-        Preferences().setPreference(DISCLAIMER, true)
+        preferences.showDisclaimer = false
     }
 
 }

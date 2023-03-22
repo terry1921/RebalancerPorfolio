@@ -6,11 +6,13 @@ import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.transformationlayout.onTransformationStartContainer
+import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutDisclaimerBinding
 import dev.rockstar.portfolio.ui.main.MainActivity
 import dev.rockstar.portfolio.ui.privacy.PrivacyPolicyActivity
 
+@AndroidEntryPoint
 class DisclaimerActivity : BindingActivity<LayoutDisclaimerBinding>(R.layout.layout_disclaimer) {
 
     @get:VisibleForTesting
@@ -26,7 +28,7 @@ class DisclaimerActivity : BindingActivity<LayoutDisclaimerBinding>(R.layout.lay
 
     override fun onStart() {
         super.onStart()
-        if (viewModel.isShowedDisclaimer()) {
+        if (!viewModel.isShowedDisclaimer()) {
             goToMain()
         }
         binding.linkPrivacyPolice.setOnClickListener {

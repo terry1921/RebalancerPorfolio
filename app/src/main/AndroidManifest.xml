@@ -42,7 +42,7 @@
             tools:node="merge">
 
             <meta-data
-                android:name="dev.rockstar.portfolio.utils.TimberInitializer"
+                android:name="dev.rockstar.portfolio.initializer.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>
 

@@ -1,4 +1,4 @@
-package dev.rockstar.portfolio.utils
+package dev.rockstar.portfolio.initializer
 
 import android.content.Context
 import androidx.startup.Initializer
