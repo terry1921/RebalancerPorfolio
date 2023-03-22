@@ -121,6 +121,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.startup)
+    implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.datastore)
 
     // gson

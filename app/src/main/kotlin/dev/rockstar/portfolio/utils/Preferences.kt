@@ -1,5 +1,6 @@
 package dev.rockstar.portfolio.utils
 
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import dev.rockstar.portfolio.MainApp
@@ -7,30 +8,46 @@ import timber.log.Timber
 
 class Preferences {
 
+    private val preferences: SharedPreferences? by lazy {
+        MainApp.mContext?.getSharedPreferences(CONFIG_FILE_NAME, MODE_PRIVATE)
+    }
+
+    companion object {
+        const val CONFIG_FILE_NAME = "rebalancer"
+    }
+
+    init {
+        Timber.d("init Utils -> Preferences")
+    }
+
     fun setPreference(key: String?, value: Any) {
         try {
-            val editor = MainApp.preferences.edit()
-            when (value) {
-                is String -> editor.putString(key, value)
-                is Int -> editor.putInt(key, value)
-                is Boolean -> editor.putBoolean(key, value)
-                is Long -> editor.putLong(key, value)
-                is Float -> editor.putFloat(key, value)
-                else -> editor.putString(key, value.toString())
+            val editor = preferences?.edit()
+            editor?.apply {
+                when (value) {
+                    is String -> putString(key, value)
+                    is Int -> putInt(key, value)
+                    is Boolean -> putBoolean(key, value)
+                    is Long -> putLong(key, value)
+                    is Float -> putFloat(key, value)
+                    else -> putString(key, value.toString())
+                }
+                apply()
             }
-            editor.apply()
         } catch (e: java.lang.Exception) {
             Timber.e(e.cause, "setPreference: ${e.message}")
         }
     }
 
     fun <T> setPreferenceObject(key: String?, y: T) {
-        val editor: SharedPreferences.Editor = MainApp.preferences.edit()
+        val editor = preferences?.edit()
         try {
             val gson = Gson()
             val inString = gson.toJson(y)
-            editor.putString(key, inString)
-            editor.apply()
+            editor?.apply {
+                putString(key, inString)
+                apply()
+            }
         } catch (t: Throwable) {
             Timber.e(t.cause, "setPreferenceObject: ${t.message}")
         }
@@ -39,7 +56,7 @@ class Preferences {
     fun <T> getPreferenceObject(key: String?, c: Class<T>?): T? {
         return try {
             val gson = Gson()
-            val value: String? = MainApp.preferences.getString(key, "")
+            val value: String? = preferences?.getString(key, "")
             gson.fromJson(value, c)
         } catch (t: Throwable) {
             Timber.e(t.cause, "getPreferenceObject: ${t.message}")
@@ -49,24 +66,24 @@ class Preferences {
 
     fun <T> getPreference(key: String?, c: Class<T>): Any? {
         return try {
-            when(c.name) {
+            when (c.name) {
                 String::class.java.name -> {
-                    MainApp.preferences.getString(key, null)
+                    preferences?.getString(key, null)
                 }
                 Int::class.java.name -> {
-                    MainApp.preferences.getInt(key, -1)
+                    preferences?.getInt(key, -1)
                 }
                 Boolean::class.java.name -> {
-                    MainApp.preferences.getBoolean(key, false)
+                    preferences?.getBoolean(key, false)
                 }
                 Long::class.java.name -> {
-                    MainApp.preferences.getLong(key, -1L)
+                    preferences?.getLong(key, -1L)
                 }
                 Float::class.java.name -> {
-                    MainApp.preferences.getFloat(key, -1F)
+                    preferences?.getFloat(key, -1F)
                 }
                 else -> {
-                    MainApp.preferences.getString(key, null)
+                    preferences?.getString(key, null)
                 }
             }
         } catch (e: Exception) {
@@ -77,13 +94,14 @@ class Preferences {
 
     fun deletePreferences(vararg keys: String?) {
         try {
-            val editor = MainApp.preferences.edit()
-            keys.forEach { editor.remove(it) }
-            editor.apply()
+            val editor = preferences?.edit()
+            editor?.apply {
+                keys.forEach { remove(it) }
+                apply()
+            }
         } catch (e: Exception) {
             Timber.e(e.cause, "deletePreferences: ${e.message}")
         }
     }
-
 
 }

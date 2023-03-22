@@ -40,7 +40,7 @@ class PrivacyPolicyActivity : BindingActivity<LayoutPrivacyBinding>(R.layout.lay
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        onBackPressed()
+        onBackPressedDispatcher.onBackPressed()
         return super.onSupportNavigateUp()
     }
 

@@ -34,6 +34,18 @@
         <activity
             android:name=".ui.privacy.PrivacyPolicyActivity"
             android:exported="false" />
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="dev.rockstar.portfolio.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+
+            <meta-data
+                android:name="dev.rockstar.portfolio.utils.TimberInitializer"
+                android:value="androidx.startup" />
+        </provider>
+
     </application>
 
 </manifest>
