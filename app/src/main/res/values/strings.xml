@@ -21,4 +21,13 @@
 
     <string name="no_assets_hint">Agregue uno usando la opción de menú \'agregar\'</string>
 
+    <!-- Preferences -->
+    <string name="currency_title">Divisa</string>
+    <string name="fingerprint_security">Seguridad de huellas dactilares</string>
+    <string name="about_the_app">Sobre la aplicación</string>
+    <string name="legal_and_privacy">Legal y Privacidad</string>
+    <string name="pref_feedback">Enviar comentarios</string>
+    <string name="pref_feedback_sum">Informar problemas técnicos o sugerir nuevas funciones</string>
+    <string name="not_available">No disponible</string>
+
 </resources>

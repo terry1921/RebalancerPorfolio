@@ -80,9 +80,9 @@
 
         </fragment>-->
 
-    <!--<fragment
+    <fragment
         android:id="@+id/settings_dest"
-        android:name="com.mx.terryrockstar.rebalancedportfolioapp.settings.SettingsFragment"
-        android:label="@string/setting" />-->
+        android:name="dev.rockstar.portfolio.ui.settings.SettingsFragment"
+        android:label="@string/setting" />
 
 </navigation>

@@ -9,8 +9,8 @@ class Preferences @Inject constructor(
     val sharedPreferences: SharedPreferences
 ) {
 
-    var pref: String by stringPreferences(
-        key = KEY_PREFERENCE,
+    var currency: String by stringPreferences(
+        key = KEY_CURRENCY,
         defaultValue = String.EMPTY
     )
 
@@ -21,7 +21,7 @@ class Preferences @Inject constructor(
 
     companion object {
         private const val KEY_SHOW_DISCLAIMER = "key_show_disclaimer"
-        private const val KEY_PREFERENCE = "key_preference"
+        private const val KEY_CURRENCY = "key_currency"
     }
 }
 

@@ -24,6 +24,7 @@ androidXStartup = "1.1.1"
 androidxLifecycleRuntime = "2.5.0"
 androidxDatastore = "1.0.0"
 androidxNavigation = "2.5.3"
+androidxPreference = "1.2.0"
 recyclerView = "1.3.0"
 baseAdapter = "1.0.4"
 whatIf = "1.1.2"
@@ -71,6 +72,7 @@ androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-kt
 androidx-navigation-runtime = { module = "androidx.navigation:navigation-runtime-ktx", version.ref = "androidxNavigation" }
 androidx-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidxNavigation" }
 androidx-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidxNavigation" }
+androidx-preferences = { module = "androidx.preference:preference", version.ref = "androidxPreference"}
 
 # database
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
