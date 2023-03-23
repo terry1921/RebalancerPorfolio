@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="android.widget.CompoundButton" />
+        <!--        <variable
+                    name="asset"
+                    type="com.mx.terryrockstar.rebalancedportfolioapp.data.Asset" />
+
+                <variable
+                    name="viewmodel"
+                    type="com.mx.terryrockstar.rebalancedportfolioapp.home.AssetsViewModel" />-->
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- android:text="@{asset.titleHeader}" -->
+        <TextView
+            android:id="@+id/groupName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/textColorSecondary"
+            android:text="header"
+            android:textAllCaps="true"
+            android:textAppearance="@style/TextTitle.Large"
+            android:textColor="@color/white_ice"
+            android:visibility="gone" />
+
+        <!-- android:onClick="@{() -> viewmodel.openAsset(asset.id)}" -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/assetContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:visibility="visible"
+            android:weightSum="1">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!--android:text="@{asset.name}"-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/name"
+                    style="@style/TextPrimary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/description"
+                    style="@style/TextSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="On target"
+                    android:textColor="@color/textColorSecondary" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <!-- android:text="@{asset.target}" -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/target"
+                style="@style/TextPrimary"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="target" />
+
+            <!-- android:text="@{asset.mountCurrency}" -->
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/amount"
+                style="@style/TextPrimary"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:text="$0.00"
+                android:textColor="@color/textColorSecondary" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </FrameLayout>
+
+</layout>
