@@ -36,7 +36,10 @@ class HomeViewModel @Inject constructor(
         assetRepository.fetchData(
             onStart = { isLoading = true },
             onComplete = { isLoading = false },
-            onError = { isNetworkAvailable = true }
+            onError = {
+                it?.let { Timber.e(it) }
+                isNetworkAvailable = true
+            }
         )
     }
 

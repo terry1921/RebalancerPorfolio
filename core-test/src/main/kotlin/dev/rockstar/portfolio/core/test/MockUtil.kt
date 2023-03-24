@@ -4,7 +4,7 @@ import dev.rockstar.portfolio.core.model.Asset
 
 object MockUtil {
 
-    fun myMockList() = listOf(mockAsset())
+    fun mockList() = listOf(mockAsset())
 
     fun mockAsset() = Asset(
         id = 1,
