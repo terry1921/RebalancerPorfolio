@@ -29,5 +29,6 @@
     <string name="pref_feedback">Enviar comentarios</string>
     <string name="pref_feedback_sum">Informar problemas técnicos o sugerir nuevas funciones</string>
     <string name="not_available">No disponible</string>
+    <string name="add">Agregar</string>
 
 </resources>

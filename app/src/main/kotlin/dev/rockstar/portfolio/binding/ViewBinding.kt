@@ -23,8 +23,7 @@ object ViewBinding {
             Snackbar.make(view, text, Snackbar.LENGTH_INDEFINITE).show()
         }
     }
-
-
+    
     @JvmStatic
     @BindingAdapter("gone")
     fun bindGone(view: View, shouldBeGone: Boolean) {

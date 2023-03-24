@@ -1,9 +1,18 @@
 package dev.rockstar.portfolio.core.test
 
+import dev.rockstar.portfolio.core.model.Asset
+
 object MockUtil {
 
-    fun myMock() = "this is my mock"
+    fun myMockList() = listOf(mockAsset())
 
-    fun myMockList() = listOf(myMock())
+    fun mockAsset() = Asset(
+        id = 1,
+        name = "asset",
+        groupId = 1,
+        amount = 1.0f,
+        targetAllocation = 1.0f,
+        note = "note"
+    )
 
 }

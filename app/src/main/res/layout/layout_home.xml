@@ -17,16 +17,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:gone="@{!vm.loading}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <include
             android:id="@+id/noData"
             layout="@layout/layout_no_data"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/assetsContainer"
@@ -35,7 +45,7 @@
             android:layout_marginStart="@dimen/margin_16"
             android:layout_marginTop="@dimen/margin_16"
             android:layout_marginEnd="@dimen/margin_16"
-            android:visibility="visible"
+            app:gone="@{vm.networkAvailable}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +55,6 @@
                 android:id="@+id/headerAssets"
                 layout="@layout/home_header" />
 
-            <!-- app:itemsAssets="@{vm.items}" -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/assetsList"
                 android:layout_width="0dp"
@@ -58,6 +67,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/headerAssets"
+                app:submitList="@{vm.assetsList}"
                 tools:listitem="@layout/item_asset" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
