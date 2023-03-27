@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RebalancedPortfolio"
         tools:targetApi="31">
+        <profileable
+            android:shell="true"
+            tools:targetApi="29" />
+
         <activity
             android:name=".ui.disclaimer.DisclaimerActivity"
             android:exported="true"
@@ -30,7 +34,7 @@
         <activity
             android:name="dev.rockstar.portfolio.ui.main.MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.RebalancedPortfolio"/>
+            android:theme="@style/Theme.RebalancedPortfolio" />
         <activity
             android:name=".ui.privacy.PrivacyPolicyActivity"
             android:exported="false" />
@@ -40,12 +44,10 @@
             android:authorities="dev.rockstar.portfolio.androidx-startup"
             android:exported="false"
             tools:node="merge">
-
             <meta-data
                 android:name="dev.rockstar.portfolio.initializer.TimberInitializer"
                 android:value="androidx.startup" />
         </provider>
-
     </application>
 
 </manifest>

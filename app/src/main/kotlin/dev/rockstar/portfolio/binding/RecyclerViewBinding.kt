@@ -15,4 +15,12 @@ object RecyclerViewBinding {
         }
     }
 
+    @JvmStatic
+    @BindingAdapter("adapter")
+    fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+        view.adapter = adapter.apply {
+            stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        }
+    }
+
 }

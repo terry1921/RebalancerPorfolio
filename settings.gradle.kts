@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "Rebalancer Portfolio"
 include(":app")
+include(":benchmark")
 include(":core-network")
 include(":core-database")
 include(":core-preferences")

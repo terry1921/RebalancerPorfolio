@@ -66,8 +66,8 @@ android {
 
     buildTypes {
         create("benchmark") {
-            isDebuggable = true
-            signingConfig = getByName("debug").signingConfig
+            isDebuggable = false
+            signingConfig = signingConfigs.getByName("debug")
             matchingFallbacks += listOf("release")
         }
         getByName("release") {
@@ -159,5 +159,4 @@ dependencies {
     androidTestImplementation(libs.truth)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso)
-    androidTestImplementation(libs.android.test.runner)
 }

@@ -26,6 +26,7 @@ class HomeFragment : BindingFragment<LayoutHomeBinding>(R.layout.layout_home) {
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         return binding {
+            adapter = AssetAdapter()
             vm = viewModel
         }.root
     }
@@ -43,7 +44,7 @@ class HomeFragment : BindingFragment<LayoutHomeBinding>(R.layout.layout_home) {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.add) {
-                    // TODO navcontroller navigate add from home
+                    // nav controller navigate add from home
                     Timber.d("onMenuItemSelected: ADD")
                 }
                 return false

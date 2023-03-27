@@ -4,32 +4,28 @@
     <data>
 
         <import type="android.widget.CompoundButton" />
-        <!--        <variable
-                    name="asset"
-                    type="com.mx.terryrockstar.rebalancedportfolioapp.data.Asset" />
 
-                <variable
-                    name="viewmodel"
-                    type="com.mx.terryrockstar.rebalancedportfolioapp.home.AssetsViewModel" />-->
+        <variable
+            name="asset"
+            type="dev.rockstar.portfolio.core.model.Asset" />
     </data>
 
-    <FrameLayout
+    <com.skydoves.transformationlayout.TransformationLayout
+        android:id="@+id/transformationLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- android:text="@{asset.titleHeader}" -->
         <TextView
             android:id="@+id/groupName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/textColorSecondary"
-            android:text="header"
+            android:text="@{asset.titleHeader}"
             android:textAllCaps="true"
             android:textAppearance="@style/TextTitle.Large"
             android:textColor="@color/white_ice"
             android:visibility="gone" />
 
-        <!-- android:onClick="@{() -> viewmodel.openAsset(asset.id)}" -->
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/assetContainer"
             android:layout_width="match_parent"
@@ -46,13 +42,12 @@
                 android:layout_weight="1"
                 android:orientation="vertical">
 
-                <!--android:text="@{asset.name}"-->
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/name"
                     style="@style/TextPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="name" />
+                    android:text="@{asset.name}" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/description"
@@ -60,32 +55,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="On target"
-                    android:textColor="@color/textColorSecondary" />
+                    android:textColor="@android:color/holo_green_dark" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            <!-- android:text="@{asset.target}" -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/target"
                 style="@style/TextPrimary"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="target" />
+                android:text="@{asset.target}" />
 
-            <!-- android:text="@{asset.mountCurrency}" -->
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/amount"
                 style="@style/TextPrimary"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:text="$0.00"
+                android:text="@{asset.mountCurrency}"
                 android:textColor="@color/textColorSecondary" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
-    </FrameLayout>
+    </com.skydoves.transformationlayout.TransformationLayout>
 
 </layout>

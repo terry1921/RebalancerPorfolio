@@ -1,4 +1,4 @@
-package com.dev.rockstar.portfolio
+package dev.rockstar.portfolio
 
 import org.junit.Test
 
