@@ -69,7 +69,7 @@ class AssetDaoTest : LocalDatabase() {
     }
 
     @Test
-    fun insertAndDeleteAllAssets() = runBlocking {
+    fun insertAndDeleteAllAssetsTest() = runBlocking {
         assetDao.insertAsset(mockAsset().asEntity())
 
         val loadFromDB = assetDao.getAssetById(1)

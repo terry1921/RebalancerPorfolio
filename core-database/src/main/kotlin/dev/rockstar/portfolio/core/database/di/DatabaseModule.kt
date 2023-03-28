@@ -9,6 +9,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.rockstar.portfolio.core.database.AssetDao
+import dev.rockstar.portfolio.core.database.GroupDao
 import dev.rockstar.portfolio.core.database.PortfolioDatabase
 import javax.inject.Singleton
 
@@ -38,6 +39,10 @@ internal object DatabaseModule {
     @Provides
     @Singleton
     fun provideAssetDao(appDatabase: PortfolioDatabase): AssetDao = appDatabase.assetDao()
+
+    @Provides
+    @Singleton
+    fun provideGroupDao(appDatabase: PortfolioDatabase): GroupDao = appDatabase.groupDao()
 
 
 }

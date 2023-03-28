@@ -1,4 +1,4 @@
-package dev.rockstart.portfolio.core.data
+package dev.rockstar.portfolio.core.data
 
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
@@ -8,7 +8,6 @@ import com.nhaarman.mockitokotlin2.whenever
 import dev.rockstar.portfolio.core.data.repository.AssetRepositoryImpl
 import dev.rockstar.portfolio.core.database.AssetDao
 import dev.rockstar.portfolio.core.database.entity.mapper.asEntity
-import dev.rockstar.portfolio.core.model.Asset
 import dev.rockstar.portfolio.core.test.MainCoroutinesRule
 import dev.rockstar.portfolio.core.test.MockUtil.mockAsset
 import dev.rockstar.portfolio.core.test.MockUtil.mockList

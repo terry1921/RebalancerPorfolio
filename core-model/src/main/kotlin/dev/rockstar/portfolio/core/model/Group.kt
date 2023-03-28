@@ -1,8 +1,23 @@
 package dev.rockstar.portfolio.core.model
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+import kotlin.math.roundToInt
+
+@JsonClass(generateAdapter = true)
 data class Group(
-    val id: Long,
-    var name: String = "",
-    var targetAllocation: Float,
-    var note: String = "",
-)
+    @field:Json(name = "id") val id: Long,
+    @field:Json(name = "name") var name: String = "",
+    @field:Json(name = "targetAllocation") var targetAllocation: Float,
+    @field:Json(name = "note") var note: String = "",
+) {
+
+    fun getTarget() : String {
+        return "${targetAllocation.getTargetNumber()}%"
+    }
+
+    fun getTargetInt() : Int {
+        return targetAllocation.roundToInt()
+    }
+
+}

@@ -2,6 +2,7 @@ package dev.rockstar.portfolio.core.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
+import kotlin.math.roundToInt
 
 @JsonClass(generateAdapter = true)
 data class Asset(
@@ -13,16 +14,7 @@ data class Asset(
     @field:Json(name = "note") var note: String = "",
 ) {
     fun getTarget() : String {
-        return "${getTargetNumber()}%"
-    }
-
-    private fun getTargetNumber() : String {
-        val target = if (targetAllocation % 1 == 0.0f) {
-            targetAllocation.toInt().toString()
-        } else {
-            targetAllocation.toString()
-        }
-        return target
+        return "${targetAllocation.getTargetNumber()}%"
     }
 
     fun getMountCurrency(): String {
@@ -34,4 +26,13 @@ data class Asset(
         return "$name (${getTarget()})"
     }
 
+}
+
+fun Float.getTargetNumber() : String {
+    val target = if (this % 1 == 0.0f) {
+        this.roundToInt().toString()
+    } else {
+        this.toString()
+    }
+    return target
 }
