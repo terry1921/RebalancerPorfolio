@@ -1,4 +1,4 @@
-package dev.rockstar.portfolio.ui.home
+package dev.rockstar.portfolio.ui.group
 
 import android.os.SystemClock
 import android.view.ViewGroup
@@ -8,22 +8,22 @@ import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import dev.rockstar.portfolio.R
-import dev.rockstar.portfolio.core.model.Asset
-import dev.rockstar.portfolio.databinding.ItemAssetBinding
+import dev.rockstar.portfolio.core.model.Group
+import dev.rockstar.portfolio.databinding.ItemGroupBinding
 import timber.log.Timber
 
-class AssetAdapter : BindingListAdapter<Asset, AssetAdapter.AssetViewHolder>(diffUtil) {
+class GroupAdapter : BindingListAdapter<Group, GroupAdapter.GroupViewHolder>(diffUtil) {
 
     private var onClickedAt = 0L
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        parent.binding<ItemAssetBinding>(R.layout.item_asset).let(::AssetViewHolder)
+        parent.binding<ItemGroupBinding>(R.layout.item_group).let(::GroupViewHolder)
 
-    override fun onBindViewHolder(holder: AssetViewHolder, position: Int) =
-        holder.bindAsset(getItem(position))
+    override fun onBindViewHolder(holder: GroupViewHolder, position: Int) =
+        holder.bindGroup(getItem(position))
 
-    inner class AssetViewHolder constructor(
-        private val binding: ItemAssetBinding
+    inner class GroupViewHolder constructor(
+        private val binding: ItemGroupBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         init {
@@ -39,20 +39,21 @@ class AssetAdapter : BindingListAdapter<Asset, AssetAdapter.AssetViewHolder>(dif
             }
         }
 
-        fun bindAsset(asset: Asset) {
-            binding.asset = asset
+        fun bindGroup(group: Group) {
+            binding.group = group
             binding.executePendingBindings()
         }
     }
 
     companion object {
-        private val diffUtil = object : DiffUtil.ItemCallback<Asset>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<Group>() {
+            override fun areItemsTheSame(oldItem: Group, newItem: Group): Boolean {
+                return oldItem.name == newItem.name
+            }
 
-            override fun areItemsTheSame(oldItem: Asset, newItem: Asset): Boolean =
-                oldItem.name == newItem.name
-
-            override fun areContentsTheSame(oldItem: Asset, newItem: Asset): Boolean =
-                oldItem == newItem
+            override fun areContentsTheSame(oldItem: Group, newItem: Group): Boolean {
+                return oldItem == newItem
+            }
         }
     }
 

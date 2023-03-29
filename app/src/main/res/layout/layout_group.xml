@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.home.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="adapter"
-            type="dev.rockstar.portfolio.ui.home.AssetAdapter" />
+            type="dev.rockstar.portfolio.ui.group.GroupAdapter" />
 
         <variable
             name="vm"
-            type="dev.rockstar.portfolio.ui.home.HomeViewModel" />
+            type="dev.rockstar.portfolio.ui.group.GroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +40,7 @@
             app:noData="@{!vm.networkAvailable}" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/assetsContainer"
+            android:id="@+id/groupsContainer"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/margin_16"
@@ -56,11 +53,11 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <include
-                android:id="@+id/headerAssets"
-                layout="@layout/home_header" />
+                android:id="@+id/headerGroups"
+                layout="@layout/group_header" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/assetsList"
+                android:id="@+id/groupList"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="@dimen/margin_8"
@@ -71,9 +68,9 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/headerAssets"
-                app:submitList="@{vm.assetsList}"
-                tools:listitem="@layout/item_asset" />
+                app:layout_constraintTop_toBottomOf="@+id/headerGroups"
+                app:submitList="@{vm.groupList}"
+                tools:listitem="@layout/item_group" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

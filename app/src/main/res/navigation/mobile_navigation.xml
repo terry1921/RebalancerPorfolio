@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/home_dest">
+    app:startDestination="@id/home_dest">
 
     <fragment
         android:id="@+id/home_dest"
@@ -10,7 +10,23 @@
         android:label="@string/home"
         tools:layout="@layout/layout_home">
 
-        <action
+        <!--<action
+            android:id="@+id/action_add"
+            app:destination="@+id/add_dest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />-->
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/group_dest"
+        android:name="dev.rockstar.portfolio.ui.group.GroupFragment"
+        android:label="@string/groups"
+        tools:layout="@layout/layout_group">
+
+        <!--<action
             android:id="@+id/action_add"
             app:destination="@+id/add_dest"
             app:enterAnim="@anim/slide_in_right"
@@ -18,67 +34,51 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_edit"
+            app:destination="@+id/edit_dest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />-->
+
     </fragment>
 
-    <!--    <fragment
-            android:id="@+id/group_dest"
-            android:name="com.mx.terryrockstar.rebalancedportfolioapp.groups.GroupsFragment"
-            android:label="@string/groups"
-            tools:layout="@layout/fragment_groups" >
+    <!--<fragment
+        android:id="@+id/add_dest"
+        android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
+        android:label="@string/add"
+        tools:layout="@layout/fragment_add_edit">
 
-            <action
-                android:id="@+id/action_add"
-                app:destination="@+id/add_dest"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="from"
+            android:defaultValue="1"
+            app:argType="integer" />
 
-            <action
-                android:id="@+id/action_edit"
-                app:destination="@+id/edit_dest"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="id"
+            android:defaultValue="0L"
+            app:argType="long" />
 
-        </fragment>
+    </fragment>
 
-        <fragment
-            android:id="@+id/add_dest"
-            android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
-            android:label="@string/add"
-            tools:layout="@layout/fragment_add_edit" >
+    <fragment
+        android:id="@+id/edit_dest"
+        android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
+        android:label="@string/edit"
+        tools:layout="@layout/fragment_add_edit">
 
-            <argument
-                android:name="from"
-                app:argType="integer"
-                android:defaultValue="1" />
+        <argument
+            android:name="from"
+            android:defaultValue="1"
+            app:argType="integer" />
 
-            <argument
-                android:name="id"
-                app:argType="long"
-                android:defaultValue="0L" />
+        <argument
+            android:name="id"
+            android:defaultValue="0L"
+            app:argType="long" />
 
-        </fragment>
-
-        <fragment
-            android:id="@+id/edit_dest"
-            android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
-            android:label="@string/edit"
-            tools:layout="@layout/fragment_add_edit" >
-
-            <argument
-                android:name="from"
-                app:argType="integer"
-                android:defaultValue="1" />
-
-            <argument
-                android:name="id"
-                app:argType="long"
-                android:defaultValue="0L" />
-
-        </fragment>-->
+    </fragment>-->
 
     <fragment
         android:id="@+id/settings_dest"
