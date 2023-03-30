@@ -49,6 +49,7 @@ androidxTestRunner = "1.5.2"
 spotless = { id = "com.diffplug.spotless", version = "6.17.0" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
+kotlin-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "androidxNavigation" }
 android-test = { id = "com.android.test", version.ref = "agp" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
@@ -60,6 +61,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
 kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+kotlin-navigation = { group = "androidx.navigation", name = "navigation-safe-args-gradle-plugin", version.ref = "androidxNavigation" }
 hilt-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
 ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp" }
 

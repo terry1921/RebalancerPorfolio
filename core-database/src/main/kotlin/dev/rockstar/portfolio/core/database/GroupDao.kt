@@ -7,7 +7,7 @@ import dev.rockstar.portfolio.core.database.entity.GroupEntity
 interface GroupDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertGroup(group: GroupEntity)
+    suspend fun insertGroup(group: GroupEntity): Long
 
     @Query("SELECT * FROM GroupEntity")
     suspend fun getGroupList(): List<GroupEntity>

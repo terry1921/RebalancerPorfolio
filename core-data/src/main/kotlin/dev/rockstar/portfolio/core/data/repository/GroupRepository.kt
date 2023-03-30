@@ -13,4 +13,12 @@ interface GroupRepository {
         onError: (String?) -> Unit
     ): Flow<List<Group>>
 
+    @WorkerThread
+    fun insertGroup(
+        group: Group,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
+    ): Flow<Boolean>
+
 }

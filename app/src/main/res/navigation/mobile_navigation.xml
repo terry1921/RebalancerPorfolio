@@ -10,13 +10,13 @@
         android:label="@string/home"
         tools:layout="@layout/layout_home">
 
-        <!--<action
+        <action
             android:id="@+id/action_add"
-            app:destination="@+id/add_dest"
+            app:destination="@id/add_dest"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />-->
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
@@ -27,14 +27,6 @@
         tools:layout="@layout/layout_group">
 
         <!--<action
-            android:id="@+id/action_add"
-            app:destination="@+id/add_dest"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-
-        <action
             android:id="@+id/action_edit"
             app:destination="@+id/edit_dest"
             app:enterAnim="@anim/slide_in_right"
@@ -42,13 +34,21 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />-->
 
+        <action
+            android:id="@+id/action_add"
+            app:destination="@id/add_dest"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
-    <!--<fragment
+    <fragment
         android:id="@+id/add_dest"
-        android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
+        android:name="dev.rockstar.portfolio.ui.addedit.AddEditFragment"
         android:label="@string/add"
-        tools:layout="@layout/fragment_add_edit">
+        tools:layout="@layout/layout_add_edit">
 
         <argument
             android:name="from"
@@ -62,7 +62,7 @@
 
     </fragment>
 
-    <fragment
+    <!--<fragment
         android:id="@+id/edit_dest"
         android:name="com.mx.terryrockstar.rebalancedportfolioapp.add.AddEditFragment"
         android:label="@string/edit"

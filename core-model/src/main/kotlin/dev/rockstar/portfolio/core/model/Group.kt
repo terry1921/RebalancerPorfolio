@@ -12,11 +12,18 @@ data class Group(
     @field:Json(name = "note") var note: String = "",
 ) {
 
-    fun getTarget() : String {
+    constructor(name: String, targetAllocation: Float, note: String) : this(
+        0L,
+        name,
+        targetAllocation,
+        note
+    )
+
+    fun getTarget(): String {
         return "${targetAllocation.getTargetNumber()}%"
     }
 
-    fun getTargetInt() : Int {
+    fun getTargetInt(): Int {
         return targetAllocation.roundToInt()
     }
 

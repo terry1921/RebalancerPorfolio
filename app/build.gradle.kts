@@ -13,6 +13,7 @@ plugins {
     id(libs.plugins.kotlin.android.get().pluginId)
     id(libs.plugins.kotlin.kapt.get().pluginId)
     id(libs.plugins.kotlin.parcelize.get().pluginId)
+    id(libs.plugins.kotlin.safe.args.get().pluginId)
     id(libs.plugins.hilt.plugin.get().pluginId)
 }
 

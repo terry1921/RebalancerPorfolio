@@ -7,10 +7,12 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutGroupBinding
+import dev.rockstar.portfolio.utils.FROM_GROUP
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -44,8 +46,9 @@ class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group)
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.add) {
-                    // nav controller navigate add from home
                     Timber.d("onMenuItemSelected: ADD")
+                    val action = GroupFragmentDirections.actionAdd(FROM_GROUP)
+                    findNavController().navigate(action)
                 }
                 return false
             }

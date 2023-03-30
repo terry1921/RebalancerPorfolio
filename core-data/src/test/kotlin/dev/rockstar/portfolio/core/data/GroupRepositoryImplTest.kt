@@ -51,4 +51,22 @@ class GroupRepositoryImplTest {
         verify(groupDao, atLeastOnce()).getGroupList()
     }
 
+    @Test
+    fun insertGroupDatabaseTest() = runTest {
+        whenever(groupDao.insertGroup(mockGroup().asEntity())).thenReturn(1)
+
+        repository.insertGroup(
+            group = mockGroup(),
+            onStart = {},
+            onComplete = {},
+            onError = {}
+        ).test(2.toDuration(DurationUnit.SECONDS)) {
+            val expectedItem = awaitItem()
+            assertEquals(expectedItem, true)
+            awaitComplete()
+        }
+
+        verify(groupDao, atLeastOnce()).insertGroup(mockGroup().asEntity())
+    }
+
 }
