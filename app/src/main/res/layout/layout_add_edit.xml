@@ -4,7 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".ui.addedit.AddEditFragment">
 
-    <data></data>
+    <data>
+        <variable
+            name="vm"
+            type="dev.rockstar.portfolio.ui.addedit.AddEditViewModel" />
+    </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -31,6 +35,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/containerMount"
                 android:layout_width="0dp"
+                app:gone="@{vm.group}"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -78,6 +83,7 @@
                 android:id="@+id/containerGroups"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                app:gone="@{vm.group}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/containerMount">
@@ -144,7 +150,8 @@
                     android:layout_marginTop="@dimen/margin_16"
                     android:gravity="center"
                     android:hint="@string/zero"
-                    android:inputType="numberDecimal"
+                    android:text="@{vm.allocation}"
+                    android:inputType="number"
                     app:layout_constraintEnd_toStartOf="@+id/percent"
                     app:layout_constraintTop_toBottomOf="@+id/titleAllocation" />
 

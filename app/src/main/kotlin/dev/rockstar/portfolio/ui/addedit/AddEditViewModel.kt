@@ -20,4 +20,19 @@ class AddEditViewModel @Inject constructor(
     var message: String? by bindingProperty(null)
         private set
 
+    @get:Bindable
+    var isGroup: Boolean by bindingProperty(false)
+        private set
+
+    @get:Bindable
+    var allocation: String by bindingProperty("0")
+
+    fun setGroup() {
+        isGroup = true
+    }
+
+    fun setHome() {
+        isGroup = false
+    }
+
 }
