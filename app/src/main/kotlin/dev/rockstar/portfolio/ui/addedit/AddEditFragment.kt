@@ -2,7 +2,6 @@ package dev.rockstar.portfolio.ui.addedit
 
 import android.os.Bundle
 import android.view.*
-import android.widget.SeekBar
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -16,6 +15,7 @@ import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutAddEditBinding
 import dev.rockstar.portfolio.utils.FROM_GROUP
 import dev.rockstar.portfolio.utils.FROM_HOME
+import dev.rockstar.portfolio.utils.addProgressChangedListener
 import timber.log.Timber
 import kotlin.math.roundToInt
 
@@ -43,24 +43,18 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
     override fun onResume() {
         super.onResume()
         if (from == FROM_GROUP) {
-            initGroupUI()
+            viewModel.setGroup()
         }
         if (from == FROM_HOME) {
-            initHomeUI()
+            viewModel.setHome()
         }
         setUpSeekBarAllocation()
     }
 
     private fun setUpSeekBarAllocation() {
-        binding.seekbar.setOnSeekBarChangeListener(object :
-            SeekBar.OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
-                viewModel.allocation = progress.toString()
-            }
-
-            override fun onStartTrackingTouch(seekBar: SeekBar?) = Unit
-            override fun onStopTrackingTouch(seekBar: SeekBar?) = Unit
-        })
+        binding.seekbar.addProgressChangedListener { _, progress, fromUser ->
+            if (fromUser) viewModel.allocation = progress.toString()
+        }
         binding.allocation.addTextChangedListener { editable ->
             if (editable != null && editable.isNotEmpty()) {
                 val progress = editable.toString().toFloat().roundToInt()
@@ -72,14 +66,6 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
                 binding.seekbar.progress = progress
             }
         }
-    }
-
-    private fun initGroupUI() {
-        viewModel.setGroup()
-    }
-
-    private fun initHomeUI() {
-        viewModel.setHome()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -94,13 +80,27 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.save) {
-                    // save group data to database
-                    Timber.d("onMenuItemSelected: SAVE")
+                    validateData()
                 }
                 return false
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
+    }
+
+    private fun validateData() {
+        val name = binding.name.text
+        if (name.isNullOrEmpty()) {
+            binding.name.error = "Name is required"
+            return
+        }
+        val allocation = binding.allocation.text
+        if (allocation.isNullOrEmpty()) {
+            binding.allocation.error = "Allocation is required"
+            return
+        }
+        val note = binding.note.text
+        viewModel.save(name.toString(), allocation.toString().toFloat(), note.toString())
     }
 
 }
