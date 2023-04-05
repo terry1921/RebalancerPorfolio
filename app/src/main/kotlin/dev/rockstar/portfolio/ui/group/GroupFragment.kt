@@ -13,7 +13,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutGroupBinding
 import dev.rockstar.portfolio.utils.FROM_GROUP
-import timber.log.Timber
 
 @AndroidEntryPoint
 class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group) {
@@ -28,9 +27,18 @@ class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group)
     ): View {
         super.onCreateView(inflater, container, savedInstanceState)
         return binding {
-            adapter = GroupAdapter()
+            adapter = GroupAdapter(::navigateToAddEdit)
             vm = viewModel
         }.root
+    }
+
+    private fun navigateToAddEdit(id: Long? = null) {
+        val action = if (id == null) {
+            GroupFragmentDirections.actionAdd(FROM_GROUP)
+        } else {
+            GroupFragmentDirections.actionAdd(FROM_GROUP, id)
+        }
+        findNavController().navigate(action)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,13 +54,16 @@ class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group)
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.add) {
-                    Timber.d("onMenuItemSelected: ADD")
-                    val action = GroupFragmentDirections.actionAdd(FROM_GROUP)
-                    findNavController().navigate(action)
+                    navigateToAddEdit()
                 }
                 return false
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
 
     }
 

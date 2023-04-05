@@ -12,6 +12,11 @@ import kotlinx.coroutines.flow.*
 import timber.log.Timber
 import javax.inject.Inject
 
+/**
+ * The GroupRepositoryImpl class is a Kotlin implementation of the GroupRepository interface that
+ * provides methods for fetching, inserting, getting, and updating groups using a database and a
+ * coroutine dispatcher.
+ * */
 @VisibleForTesting
 class GroupRepositoryImpl @Inject constructor(
     private val groupDao: GroupDao,
@@ -43,5 +48,31 @@ class GroupRepositoryImpl @Inject constructor(
     }.onStart { onStart() }.onCompletion { onComplete() }.catch { onError(it.message) }
         .flowOn(ioDispatcher)
 
+    override fun getGroup(
+        id: Long,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
+    ): Flow<Group> = flow {
+        val group = groupDao.getGroupById(id)
+        if (group == null) {
+            onError("There is no group with id: $id")
+        } else {
+            emit(group.asDomain())
+        }
+    }.onStart { onStart() }.onCompletion { onComplete() }.catch { onError(it.message) }
+        .flowOn(ioDispatcher)
+
+    override fun updateGroup(
+        group: Group,
+        onStart: () -> Unit,
+        onComplete: () -> Unit,
+        onError: (String?) -> Unit
+    ): Flow<Boolean?> = flow {
+        val rowId = groupDao.updateGroup(group.asEntity())
+        Timber.d("rowId: $rowId")
+        emit(rowId > 0)
+    }.onStart { onStart() }.onCompletion { onComplete() }.catch { onError(it.message) }
+        .flowOn(ioDispatcher)
 
 }

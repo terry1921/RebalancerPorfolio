@@ -12,7 +12,8 @@ import dev.rockstar.portfolio.core.model.Group
 import dev.rockstar.portfolio.databinding.ItemGroupBinding
 import timber.log.Timber
 
-class GroupAdapter : BindingListAdapter<Group, GroupAdapter.GroupViewHolder>(diffUtil) {
+class GroupAdapter(private val listener: (Long) -> Unit) :
+    BindingListAdapter<Group, GroupAdapter.GroupViewHolder>(diffUtil) {
 
     private var onClickedAt = 0L
 
@@ -33,7 +34,7 @@ class GroupAdapter : BindingListAdapter<Group, GroupAdapter.GroupViewHolder>(dif
                 val currentClickedAt = SystemClock.elapsedRealtime()
                 if (currentClickedAt - onClickedAt > binding.transformationLayout.duration) {
                     Timber.d("Clicked on ${getItem(position).name} at $position")
-                    //DetailActivity.startActivity(binding.transformationLayout, getItem(position))
+                    listener(getItem(position).id)
                     onClickedAt = currentClickedAt
                 }
             }

@@ -6,7 +6,7 @@ import kotlin.math.roundToInt
 
 @JsonClass(generateAdapter = true)
 data class Group(
-    @field:Json(name = "id") val id: Long,
+    @field:Json(name = "id") var id: Long,
     @field:Json(name = "name") var name: String = "",
     @field:Json(name = "targetAllocation") var targetAllocation: Float,
     @field:Json(name = "note") var note: String = "",

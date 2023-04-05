@@ -16,9 +16,13 @@ import dev.rockstar.portfolio.databinding.LayoutAddEditBinding
 import dev.rockstar.portfolio.utils.FROM_GROUP
 import dev.rockstar.portfolio.utils.FROM_HOME
 import dev.rockstar.portfolio.utils.addProgressChangedListener
-import timber.log.Timber
 import kotlin.math.roundToInt
 
+/**
+ * The `AddEditFragment` class is a Fragment in a Kotlin app that handles the saving and loading of
+ * group data, and updates corresponding variables.
+ * It also provides a menu for saving the data.
+ */
 @AndroidEntryPoint
 class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_add_edit) {
 
@@ -44,6 +48,9 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
         super.onResume()
         if (from == FROM_GROUP) {
             viewModel.setGroup()
+            if (id != 0L) {
+                viewModel.load(id)
+            }
         }
         if (from == FROM_HOME) {
             viewModel.setHome()
