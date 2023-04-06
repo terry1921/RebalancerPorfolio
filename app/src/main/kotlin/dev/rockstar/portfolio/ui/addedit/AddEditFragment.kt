@@ -6,8 +6,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.core.widget.addTextChangedListener
+import androidx.databinding.Observable
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.navigation.fragment.navArgs
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,6 +18,7 @@ import dev.rockstar.portfolio.databinding.LayoutAddEditBinding
 import dev.rockstar.portfolio.utils.FROM_GROUP
 import dev.rockstar.portfolio.utils.FROM_HOME
 import dev.rockstar.portfolio.utils.addProgressChangedListener
+import timber.log.Timber
 import kotlin.math.roundToInt
 
 /**
@@ -92,6 +95,15 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
                 return false
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        viewModel.isSaved.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                Timber.d("isSaved: ${viewModel.isSaved.get()}")
+                if (viewModel.isSaved.get()) {
+                    requireActivity().onBackPressedDispatcher.onBackPressed()
+                }
+            }
+        })
 
     }
 

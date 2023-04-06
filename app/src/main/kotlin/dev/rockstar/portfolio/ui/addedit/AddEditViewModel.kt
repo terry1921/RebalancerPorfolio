@@ -1,6 +1,7 @@
 package dev.rockstar.portfolio.ui.addedit
 
 import androidx.databinding.Bindable
+import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.viewModelScope
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.bindingProperty
@@ -20,6 +21,8 @@ import javax.inject.Inject
 class AddEditViewModel @Inject constructor(
     private val groupRepository: GroupRepository
 ) : BindingViewModel() {
+
+    var isSaved: ObservableBoolean = ObservableBoolean(false)
 
     @get:Bindable
     var isLoading: Boolean by bindingProperty(false)
@@ -89,6 +92,7 @@ class AddEditViewModel @Inject constructor(
                     } else {
                         "Group not saved"
                     }
+                    isSaved.set(it)
                 }
             }
         }
