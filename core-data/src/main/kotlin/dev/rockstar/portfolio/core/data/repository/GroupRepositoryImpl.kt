@@ -16,7 +16,7 @@ import javax.inject.Inject
  * The GroupRepositoryImpl class is a Kotlin implementation of the GroupRepository interface that
  * provides methods for fetching, inserting, getting, and updating groups using a database and a
  * coroutine dispatcher.
- * */
+ */
 @VisibleForTesting
 class GroupRepositoryImpl @Inject constructor(
     private val groupDao: GroupDao,

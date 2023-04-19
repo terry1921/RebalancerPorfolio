@@ -7,7 +7,7 @@ import dev.rockstar.portfolio.core.database.entity.AssetEntity
 interface AssetDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAsset(asset: AssetEntity)
+    suspend fun insertAsset(asset: AssetEntity): Long
 
     @Query("SELECT * FROM AssetEntity ORDER BY group_id ASC")
     suspend fun getAssetList(): List<AssetEntity>

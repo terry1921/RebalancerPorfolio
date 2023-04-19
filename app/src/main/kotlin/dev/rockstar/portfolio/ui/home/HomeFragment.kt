@@ -1,7 +1,12 @@
 package dev.rockstar.portfolio.ui.home
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -12,7 +17,7 @@ import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutHomeBinding
-import dev.rockstar.portfolio.utils.FROM_HOME
+import dev.rockstar.portfolio.utils.From
 import timber.log.Timber
 
 @AndroidEntryPoint
@@ -46,7 +51,7 @@ class HomeFragment : BindingFragment<LayoutHomeBinding>(R.layout.layout_home) {
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 if (menuItem.itemId == R.id.add) {
                     Timber.d("onMenuItemSelected: ADD")
-                    val action = HomeFragmentDirections.actionAdd(FROM_HOME)
+                    val action = HomeFragmentDirections.actionAdd(From.HOME)
                     findNavController().navigate(action)
                 }
                 return false

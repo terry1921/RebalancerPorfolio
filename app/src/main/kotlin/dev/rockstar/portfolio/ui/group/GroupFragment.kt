@@ -1,7 +1,12 @@
 package dev.rockstar.portfolio.ui.group
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -12,7 +17,7 @@ import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutGroupBinding
-import dev.rockstar.portfolio.utils.FROM_GROUP
+import dev.rockstar.portfolio.utils.From
 
 @AndroidEntryPoint
 class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group) {
@@ -34,9 +39,9 @@ class GroupFragment : BindingFragment<LayoutGroupBinding>(R.layout.layout_group)
 
     private fun navigateToAddEdit(id: Long? = null) {
         val action = if (id == null) {
-            GroupFragmentDirections.actionAdd(FROM_GROUP)
+            GroupFragmentDirections.actionAdd(From.GROUP)
         } else {
-            GroupFragmentDirections.actionAdd(FROM_GROUP, id)
+            GroupFragmentDirections.actionAdd(From.GROUP, id)
         }
         findNavController().navigate(action)
     }

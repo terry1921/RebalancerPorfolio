@@ -1,7 +1,12 @@
 package dev.rockstar.portfolio.ui.addedit
 
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.view.ViewGroup
 import androidx.annotation.VisibleForTesting
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -9,14 +14,12 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.Observable
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
 import androidx.navigation.fragment.navArgs
 import com.skydoves.bindables.BindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import dev.rockstar.portfolio.R
 import dev.rockstar.portfolio.databinding.LayoutAddEditBinding
-import dev.rockstar.portfolio.utils.FROM_GROUP
-import dev.rockstar.portfolio.utils.FROM_HOME
+import dev.rockstar.portfolio.utils.From
 import dev.rockstar.portfolio.utils.addProgressChangedListener
 import timber.log.Timber
 import kotlin.math.roundToInt
@@ -33,7 +36,7 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
     internal val viewModel: AddEditViewModel by viewModels()
 
     private val safeArgs: AddEditFragmentArgs by navArgs()
-    private val from: Int by lazy { safeArgs.from }
+    private val from: From by lazy { safeArgs.from }
     private val id: Long by lazy { safeArgs.id }
 
     override fun onCreateView(
@@ -49,16 +52,9 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
 
     override fun onResume() {
         super.onResume()
-        if (from == FROM_GROUP) {
-            viewModel.setGroup()
-            if (id != 0L) {
-                viewModel.load(id)
-            }
-        }
-        if (from == FROM_HOME) {
-            viewModel.setHome()
-        }
         setUpSeekBarAllocation()
+        viewModel.setFrom(from)
+        if (id != 0L) viewModel.load(id)
     }
 
     private fun setUpSeekBarAllocation() {
@@ -66,7 +62,7 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
             if (fromUser) viewModel.allocation = progress.toString()
         }
         binding.allocation.addTextChangedListener { editable ->
-            if (editable != null && editable.isNotEmpty()) {
+            if (!editable.isNullOrEmpty()) {
                 val progress = editable.toString().toFloat().roundToInt()
                 if (progress > 100) {
                     binding.allocation.setText(R.string._100)
@@ -96,7 +92,8 @@ class AddEditFragment : BindingFragment<LayoutAddEditBinding>(R.layout.layout_ad
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
 
-        viewModel.isSaved.addOnPropertyChangedCallback(object : Observable.OnPropertyChangedCallback() {
+        viewModel.isSaved.addOnPropertyChangedCallback(object :
+            Observable.OnPropertyChangedCallback() {
             override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
                 Timber.d("isSaved: ${viewModel.isSaved.get()}")
                 if (viewModel.isSaved.get()) {

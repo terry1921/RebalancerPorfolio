@@ -12,6 +12,8 @@ data class Group(
     @field:Json(name = "note") var note: String = "",
 ) {
 
+    constructor() : this(0L, "", 0f, "")
+
     constructor(name: String, targetAllocation: Float, note: String) : this(
         0L,
         name,

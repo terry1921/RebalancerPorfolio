@@ -52,8 +52,8 @@
 
         <argument
             android:name="from"
-            android:defaultValue="1"
-            app:argType="integer" />
+            android:defaultValue="DEFAULT"
+            app:argType="dev.rockstar.portfolio.utils.From" />
 
         <argument
             android:name="id"

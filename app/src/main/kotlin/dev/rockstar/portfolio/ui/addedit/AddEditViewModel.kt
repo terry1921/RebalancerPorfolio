@@ -6,8 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.bindingProperty
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dev.rockstar.portfolio.core.data.repository.AssetRepository
 import dev.rockstar.portfolio.core.data.repository.GroupRepository
+import dev.rockstar.portfolio.core.model.Asset
 import dev.rockstar.portfolio.core.model.Group
+import dev.rockstar.portfolio.utils.From
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -19,7 +22,8 @@ import javax.inject.Inject
  **/
 @HiltViewModel
 class AddEditViewModel @Inject constructor(
-    private val groupRepository: GroupRepository
+    private val groupRepository: GroupRepository,
+    private val assetRepository: AssetRepository
 ) : BindingViewModel() {
 
     var isSaved: ObservableBoolean = ObservableBoolean(false)
@@ -50,20 +54,6 @@ class AddEditViewModel @Inject constructor(
         private set
 
     private var id: Long = 0L
-
-    /**
-     * The function sets a boolean variable "isGroup" to true.
-     */
-    fun setGroup() {
-        isGroup = true
-    }
-
-    /**
-     * The function sets a boolean variable "isGroup" to false.
-     */
-    fun setHome() {
-        isGroup = false
-    }
 
     /**
      * The function saves a group object to a repository and updates it if it already exists.
@@ -125,28 +115,51 @@ class AddEditViewModel @Inject constructor(
         isEdit = true
         this.id = id
         Timber.d("load -> id: $id")
-        val groupFlow: Flow<Group?> = groupRepository.getGroup(
-            id = id,
-            onStart = { isLoading = true },
-            onComplete = { isLoading = false },
-            onError = { message = it }
-        )
-        viewModelScope.launch { groupFlow.collect(::loadGroup) }
+        if (isGroup) {
+            val groupFlow: Flow<Group?> = groupRepository.getGroup(
+                id = id,
+                onStart = { isLoading = true },
+                onComplete = { isLoading = false },
+                onError = { message = it }
+            )
+            viewModelScope.launch { groupFlow.collect(::loadGroup) }
+        } else {
+            val assetFlow: Flow<Asset?> = assetRepository.getAsset(
+                id = id,
+                onStart = { isLoading = true },
+                onComplete = { isLoading = false },
+                onError = { message = it }
+            )
+            viewModelScope.launch { assetFlow.collect(::loadAsset) }
+        }
     }
 
-    /**
-     * The function loads data from a Group object into corresponding variables.
-     *
-     * @param group The `group` parameter is of type `Group?`, which means it can either be a `Group`
-     * object or `null`. The `loadGroup` function takes this parameter and extracts some properties
-     * from it if it is not null. Specifically, it sets the `name`, `allocation`, and
-     */
     private fun loadGroup(group: Group?) {
         Timber.d("loadGroup -> group: $group")
         group?.let { g ->
             name = g.name
             allocation = g.targetAllocation.toString()
             note = g.note
+        }
+    }
+
+    private fun loadAsset(asset: Asset?) {
+        Timber.d("loadAsset -> asset: $asset")
+        asset?.let { a ->
+            name = a.name
+            allocation = a.targetAllocation.toString()
+            note = a.note
+        }
+    }
+
+    /**
+     * The function sets the `isGroup` variable based on the `From` enum value passed to it.
+     */
+    fun setFrom(from: From) {
+        isGroup = when (from) {
+            From.HOME -> false
+            From.GROUP -> true
+            From.DEFAULT -> false
         }
     }
 

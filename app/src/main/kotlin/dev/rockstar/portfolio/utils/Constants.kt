@@ -1,5 +1,21 @@
 package dev.rockstar.portfolio.utils
 
-const val FROM_DEFAULT = 0
-const val FROM_HOME = 1
-const val FROM_GROUP = 2
+/**
+ *  The above class is an enumeration in Kotlin that defines three constants representing different
+ *  types of sources. */
+enum class From() {
+    /**
+     * The `DEFAULT` constant represents the default source.
+     */
+    DEFAULT(),
+
+    /**
+     * The `GROUP` constant represents the group source.
+     */
+    GROUP(),
+
+    /**
+     * The `HOME` constant represents the home source.
+     */
+    HOME()
+}
